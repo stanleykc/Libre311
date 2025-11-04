@@ -50,6 +50,7 @@ All paths relative to repository root `/Users/stanleyk/dev/Libre311/`:
 - [X] T012 Create test data variables in tests/acceptance/resources/variables/test_data.robot with sample addresses, service codes, realistic citizen data
 - [X] T013 [P] Create database keywords in tests/acceptance/resources/keywords/db_keywords.robot: Connect To Test Database, Seed Service Types, Seed Service Definitions, Seed Sample Requests, Clean Test Data, Verify Database State
 - [X] T014 [P] Create API keywords in tests/acceptance/resources/keywords/api_keywords.robot: Call GET Services, Call GET Requests, Call POST Request, Call GET Request By ID, Verify Open311 Response Format
+- [ ] T014B Document external service mocking strategy in tests/acceptance/resources/variables/environments.robot: Add MOCK_EXTERNAL_SERVICES boolean variable, document environment variables for UnityAuth URL, OAuth redirect URL, GCS bucket name, SafeSearch API endpoint; add comments explaining Browser Library network routing for external service interception per constitution Principle I
 - [X] T015 [P] Create UI keywords in tests/acceptance/resources/keywords/ui_keywords.robot: Open Libre311 UI, Navigate To Services Page, Navigate To Requests Page, Fill Request Submission Form, Verify Element Visible, Capture Screenshot On Failure
 - [X] T016 Create Open311Validator.py custom library in tests/acceptance/resources/libraries/ with methods: validate_service_list_response, validate_service_definition_response, validate_service_request_response, validate_request_id_format, validate_open311_required_fields
 - [X] T017 Create TestDataGenerator.py custom library in tests/acceptance/resources/libraries/ with methods: generate_realistic_name, generate_email, generate_us_phone_number, generate_minneapolis_address_with_coordinates, generate_service_request_description, generate_test_user
@@ -57,6 +58,7 @@ All paths relative to repository root `/Users/stanleyk/dev/Libre311/`:
 - [X] T019 Create database cleanup script in tests/acceptance/setup/cleanup_test_data.py to delete all test data where created_for_testing=true
 - [X] T020 Create test image assets in tests/acceptance/resources/test_images/: pothole_sample_1.jpg, streetlight_broken.jpg, graffiti_sample.jpg, huge_image.jpg (>10MB), inappropriate_content.jpg, document.pdf (placeholders created, replace with actual images)
 - [X] T021 Create Docker health check keywords in tests/acceptance/resources/keywords/docker_keywords.robot: Verify Docker Environment Ready, Check Container Status, Collect Container Logs On Failure
+- [ ] T021B Verify Docker CLI alternative to robotframework-dockerlibrary: Test all Docker operations work via Bash commands (docker ps, docker inspect, docker logs, docker exec), validate T021 keywords function correctly with Process library instead of DockerLibrary, document decision rationale in quickstart.md troubleshooting section
 
 **Checkpoint**: Foundation ready - user story test suites can now be written in parallel
 

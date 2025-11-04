@@ -32,7 +32,9 @@ Review each principle from `.specify/memory/constitution.md` and verify complian
 - **Principle III (Open311 Compliance)**: All Open311 API tests must validate against the actual GeoReport v2 specification.
 - **Principle IV (Realistic Test Data)**: Use real-world addresses, coordinates, and service request data—avoid placeholder values.
 - **Principle V (Environment Parity)**: Tests must run against Docker-composed environments matching production topology (libre311-api, libre311-ui-dev, libre311-db on unity-network).
-- **Principle VI (Observable Execution)**: Test failures must produce screenshots, API logs, database dumps, and container logs for debugging.
+- **Principle VI (Observable Execution)**: Test failures must produce screenshots, API logs, database dumps, and container logs for debugging. Use library-specific patterns for diagnostic capture (RESTinstance via $rest.instances[-1], conditional Browser Library screenshots).
+- **Principle VII (API Testing Standards)**: API tests must document full endpoint paths with base URL prefixes, required parameters, response parsing patterns, and environment variables. Use documented library access patterns to avoid trial-and-error debugging.
+- **Principle VIII (Test Data Type Handling)**: Tests must handle data type validation appropriately with type-specific Robot Framework keywords. Verify field existence before type validation, use correct keywords for string/numeric/boolean/array fields.
 
 **Test Organization Compliance**:
 - Suites organized by priority (P1/P2/P3) in separate .robot files
@@ -104,7 +106,9 @@ docker-compose.local.yml             # Development Docker config
 - **Principle III (Open311 Compliance)**: ✅ Custom Open311Validator.py library will validate against GeoReport v2 specification.
 - **Principle IV (Realistic Test Data)**: ✅ TestDataGenerator.py will create realistic addresses, coordinates, and descriptions.
 - **Principle V (Environment Parity)**: ✅ Tests run against docker-compose.local.yml matching production topology.
-- **Principle VI (Observable Execution)**: ✅ Robot Framework native screenshot capture, plus custom logging for API/DB diagnostics.
+- **Principle VI (Observable Execution)**: ✅ Robot Framework native screenshot capture, plus custom logging for API/DB diagnostics. RESTinstance response context via $rest.instances[-1], conditional Browser Library screenshots based on test tags.
+- **Principle VII (API Testing Standards)**: ✅ environments.robot documents API_BASE_URL with full path prefix (/api), api_keywords.robot uses documented RESTinstance access patterns, JURISDICTION_ID documented as required parameter.
+- **Principle VIII (Test Data Type Handling)**: ✅ api_keywords.robot uses Dictionary Should Contain Key before field access, type-appropriate validation (Should Not Be Empty for strings, type checks for numeric/boolean fields).
 - **Test Organization**: ✅ Suites organized by P1/P2/P3 with proper tagging and verb-noun keyword naming.
 - **Quality Gates**: ✅ P1 suite designed for <5 minute execution per performance goals.
 

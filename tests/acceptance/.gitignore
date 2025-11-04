@@ -1,0 +1,43 @@
+# Python Virtual Environment
+venv-acceptance-tests/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Test Reports and Artifacts
+reports/
+output.xml
+log.html
+report.html
+playwright-log.txt
+*.png
+*.jpg
+*.jpeg
+screenshot/
+
+# Robot Framework
+.robot/
+*.robot.pyc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+*.cache
+
+# Environment files
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,25 @@
+# Robot Framework Acceptance Test Suite Dependencies
+# Python 3.11+ required
+
+# Core Robot Framework
+robotframework==7.3.2
+
+# Browser Automation (Playwright-based)
+robotframework-browser==19.10.0
+
+# API Testing with Open311 validation
+RESTinstance==1.5.2
+
+# Database Access
+robotframework-databaselibrary==2.0.4
+pymysql==1.1.0
+
+# Test Data Generation
+robotframework-faker==5.0.0
+Faker==30.8.2
+
+# Optional: Parallel Test Execution
+# robotframework-pabot==2.18.0
+
+# Note: robotframework-dockerlibrary has version conflicts with RF 7.3.2
+# Use Docker CLI via Bash keywords instead for container management

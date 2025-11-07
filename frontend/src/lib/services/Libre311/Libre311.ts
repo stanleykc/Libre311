@@ -1,6 +1,7 @@
 import type { AxiosInstance } from 'axios';
 import axios from 'axios';
 import { z } from 'zod';
+import libphonenumber from 'google-libphonenumber';
 import type { RecaptchaService } from '../RecaptchaService';
 import type {
 	UpdateSensitiveServiceRequestRequest,
@@ -219,10 +220,36 @@ export type AttributeResponse = { code: ServiceDefinitionAttribute['code']; valu
 
 export const EmailSchema = z.string().email();
 
+export const PhoneSchema = z
+	.string()
+	.superRefine((val, ctx) => {
+		const defaultErr = {
+			code: z.ZodIssueCode.custom,
+			message: 'Phone number is invalid'
+		};
+		try {
+			const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
+			const parsed = phoneUtil.parseAndKeepRawInput(val, 'US');
+			const valid = phoneUtil.isValidNumberForRegion(parsed, 'US');
+			if (!valid) {
+				ctx.addIssue(defaultErr);
+			}
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: error.message
+				});
+			} else {
+				ctx.addIssue(defaultErr);
+			}
+		}
+	});
+
 export const ContactInformationSchema = z.object({
 	first_name: z.string().optional(),
 	last_name: z.string().optional(),
-	phone: z.string().optional(), // todo add validation => https://www.npmjs.com/package/libphonenumber-js
+	phone: z.union([z.literal(''), PhoneSchema]).optional(),
 	email: EmailSchema.optional()
 });
 

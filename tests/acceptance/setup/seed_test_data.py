@@ -2,7 +2,7 @@
 """
 Database seeding script for Libre311 acceptance tests
 
-This script seeds the test database with service types, service definitions,
+This script seeds the test database with service types, service groups,
 and sample service requests for acceptance testing.
 
 Usage:
@@ -23,57 +23,45 @@ import random
 DB_CONFIG = {
     'host': 'localhost',
     'port': 23306,
-    'user': 'libre311user',
-    'password': 'libre311pass',
-    'database': 'libre311db',
+    'user': 'root',
+    'password': 'test',
+    'database': 'libre311',
     'charset': 'utf8mb4',
 }
 
-# Test data marker
-TEST_DATA_MARKER = 'created_for_testing'
+# Test jurisdiction ID - using a unique test identifier
+TEST_JURISDICTION_ID = 'test-mpls-001'
+TEST_JURISDICTION_NAME = 'Minneapolis Test Jurisdiction'
+TEST_TENANT_ID = 1
 
-# Service types (from data-model.md)
+# Service types - note: actual schema doesn't use service_code
+# Services are linked to jurisdictions and service_groups
 SERVICE_TYPES = [
     {
-        'service_code': 'POTHOLE',
         'service_name': 'Pothole',
         'description': 'Report potholes or damaged road surfaces',
-        'category': 'Streets & Roads',
-        'keywords': 'road,street,asphalt,pavement',
+        'type': 'realtime',
+        'order_position': 1,
     },
     {
-        'service_code': 'STREETLIGHT',
         'service_name': 'Broken Streetlight',
         'description': 'Report malfunctioning or dark streetlights',
-        'category': 'Public Safety',
-        'keywords': 'light,lamp,dark,safety',
+        'type': 'realtime',
+        'order_position': 2,
     },
     {
-        'service_code': 'GRAFFITI',
         'service_name': 'Graffiti Removal',
         'description': 'Report graffiti on public property',
-        'category': 'Vandalism',
-        'keywords': 'vandalism,tagging,spray paint',
+        'type': 'realtime',
+        'order_position': 3,
     },
 ]
 
-# Service definitions
-SERVICE_DEFINITIONS = [
-    {
-        'definition_code': 'POTHOLE_ROAD',
-        'service_code': 'POTHOLE',
-        'definition_name': 'Pothole - Road',
-        'required_fields': 'location,description,size_estimate',
-        'expected_response_time': '48 hours',
-    },
-    {
-        'definition_code': 'POTHOLE_SIDEWALK',
-        'service_code': 'POTHOLE',
-        'definition_name': 'Pothole - Sidewalk',
-        'required_fields': 'location,description',
-        'expected_response_time': '72 hours',
-    },
-]
+# Service group for test services
+SERVICE_GROUP = {
+    'group_name': 'Test Services',
+    'description': 'Service group for acceptance testing',
+}
 
 # Sample addresses (Minneapolis area)
 SAMPLE_ADDRESSES = [

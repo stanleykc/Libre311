@@ -248,7 +248,7 @@ Administrators have access to a table view with enhanced functionality.
 *Figure 4: Administrator table view showing service requests with detailed columns including Request ID, Priority, Service Name, Status, Address, Reported date, and Expected Completion. The view includes a sidebar with request previews, search functionality, pagination controls, and CSV download capability.*
 
 **Accessing table view:**
-- After logging in, click Service Request Table" in the navigation menu
+- After logging in, click "Service Request Table" in the navigation menu
 - Available only to authenticated users
 
 **Table features:**
